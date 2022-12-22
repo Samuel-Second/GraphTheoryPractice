@@ -1,0 +1,22 @@
+*{
+    font-family: "Microsoft JhengHei";
+    font-weight: bolder;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+::selection{
+    background-color: #535863;
+    color: #EBEDF1;
+}
+.hidden{
+    display: none;
+    visibility: hidden;
+}
+select{
+    font-size: 15px;
+    color: #838D9F;
+    background-color: white;
+}
+select:hover{
+    cursor: pointer;
+}

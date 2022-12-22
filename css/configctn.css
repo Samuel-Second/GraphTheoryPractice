@@ -1,0 +1,41 @@
+#config-btn-ctn{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: flex-end;
+}
+/* https://www.w3schools.com/css/css3_shadows.asp */
+.config-panels{
+    position: absolute;
+    right: 80px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 20%);
+    padding: 20px;
+    color: #EBEDF1;
+    background-color: #838D9F;
+}
+.config-panels > div > div{
+    width: max-content;
+    height: max-content;
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    user-select: none;
+}
+.config-panels > div > div > input, #algorithm-slct{
+    width: 100px;
+    height: 30px;
+    outline: none;
+    margin: 0px;
+    padding-right: 0px;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 5px;
+    color: #838D9F;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.config-panels > div > div > input{
+    font-size: 20px;
+    text-align: center;
+}

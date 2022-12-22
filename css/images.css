@@ -1,0 +1,31 @@
+#node-add-btn{
+    background-image: url("../img/icon_node_add.png");
+}
+#node-del-btn{
+    background-image: url("../img/icon_node_del.png");
+}
+#adjc-random-btn{
+    background-image: url("../img/icon_adjc_random.png");
+}
+#adjc-clear-btn{
+    background-image: url("../img/icon_adjc_clear.png");
+}
+#adjc-config-btn{
+    background-image: url("../img/icon_adjc_config.png");
+}
+#path-config-btn{
+    background-image: url("../img/icon_path_config.png");
+}
+#adjc-download-btn{
+    background-image: url("../img/icon_adjc_download.png");
+}
+#adjc-upload-btn{
+    background-image: url("../img/icon_adjc_upload.png");
+}
+#graph-download-btn{
+    background-image: url("../img/icon_download.png");
+}
+#adjc-img-dnld-btn{
+    background-image: url("../img/icon_download.png");
+    filter: brightness(0) invert(1);
+}

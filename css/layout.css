@@ -1,0 +1,59 @@
+body{
+    width: 96vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #D0D4DD;
+}
+#main-ctn{
+    width: 96vw;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+}
+.ctns{
+    display: flex;
+    justify-content: center;
+    border: #EBEDF1;
+    border-style: solid;
+    border-width: 15px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 20%);
+    background-color: #EBEDF1;
+}
+.colored-ctns{
+    background-color: #dde2ea;
+}
+#display-ctn{
+    aspect-ratio: 1/1;
+    width: 700px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+#body-ctn{
+    width: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 15px;
+}
+#adjacency-ctn{
+    aspect-ratio: 1/1;
+    width: max-content;
+    height: max-content;
+    margin-bottom: 15px;
+}
+/* https://blog.hubspot.com/website/hide-scrollbar-css */
+::-webkit-scrollbar {
+    display: none;
+}
+#right-ctn{
+    position: sticky;
+    width: 55px;
+    height: 700px;
+    top: 7px;
+    left: 100%;
+    padding: 20px;
+    padding-top: 0px;
+}

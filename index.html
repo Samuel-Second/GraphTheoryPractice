@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/displaycanvas.css">
+    <link rel="stylesheet" href="css/configctn.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/adjacencytable.css">
+    <link rel="stylesheet" href="css/images.css">
+    <title>
+        圖論實作
+    </title>
+</head>
+<body>
+    <div id="main-ctn">
+        <div id="body-ctn">
+            <div id="display-ctn" class="ctns colored-ctns">
+                <canvas id="display-canvas" width="1000" height="1000"></canvas>
+                <div id="graph-download-ctn">
+                    <div id="graph-download-btn" class="btns config-btns" title="下載圖"></div>
+                </div>
+                <div id="path-text-ctn">
+                    <div id="path-text-area"></div>
+                </div>
+            </div>
+            <div id="adjacency-ctn" class="ctns">
+                <table id="adjacency-table"></table>
+                <div id="adjc-img-dnld-ctn">
+                    <div id="adjc-img-dnld-btn" class="btns"></div>
+                </div>
+            </div>
+        </div>
+        <div id="right-ctn" class="ctns">
+            <div id="config-btn-ctn">
+                <div class="btn-background">
+                    <div id="node-add-btn" class="btns config-btns btn-hover" title="新增節點（+）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="node-del-btn" class="btns config-btns btn-hover" title="刪除節點（-）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="adjc-random-btn" class="btns config-btns btn-hover" title="隨機鄰接矩陣（R）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="adjc-config-btn" class="btns config-btns btn-hover" title="隨機鄰接矩陣設定（A）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="adjc-clear-btn" class="btns config-btns btn-hover" title="清空鄰接矩陣（C）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="path-config-btn" class="btns config-btns btn-hover" title="路線設定（P）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="adjc-download-btn" class="btns config-btns btn-hover" title="下載鄰接矩陣（D）"></div>
+                </div>
+                <div class="btn-background">
+                    <div id="adjc-upload-btn" class="btns config-btns btn-hover" title="上傳鄰接矩陣（U）"></div>
+                    <input id="adjc-upload-input" class="hidden" type="file" accept=".json">
+                </div>
+            </div>
+            <div id="config-hidden-panels">
+                <div id="path-config-ctn" class="config-panels hidden">
+                    <div>
+                        <div>
+                            路徑：<select id="algorithm-slct">
+                                <option value="none">隱藏路徑</option>
+                                <option value="dijkstra">最短路徑</option>
+                                <option value="tsp">圖遍歷</option>
+                                <option value="mst">最小生成樹</option>
+                            </select>
+                        </div>
+                        <div id="path-config-start-ctn">
+                            起點：<input id="path-config-start-node" type="number" value="0">
+                        </div>
+                        <div id="path-config-end-ctn">
+                            終點：<input id="path-config-end-node" type="number" value="1">
+                        </div>
+                    </div>
+                </div>
+                <div id="adjc-config-ctn" class="config-panels hidden">
+                    <div>
+                        <div>
+                            邊最小值：<input id="adjc-config-min-edge" type="number" min="0" max="999" value="0">
+                        </div>
+                        <div>
+                            邊最大值：<input id="adjc-config-max-edge" type="number" min="0" max="999" value="999">
+                        </div>
+                        <div>
+                            邊密集度：<input id="adjc-config-edge-density" type="number" min="0" max="100" value="70"> %
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/elementloader.js"></script>
+    <script src="js/downloadasjson.js"></script>
+    <script src="js/getimgbyelm.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/configstorage.js"></script>
+    <script src="js/tspstats.js"></script>
+    <script src="js/brush.js"></script>
+    <script src="js/pathtextarea.js"></script>
+    <script src="js/graph.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/elementshowhide.js"></script>
+    <script src="js/keyevents.js"></script>
+    <script src="js/buttonevents.js"></script>
+    <script src="js/pathconfigevents.js"></script>
+    <script src="js/adjcconfigevents.js"></script>
+    <script src="js/hidepanelonclick.js"></script>
+</body>
+</html>
