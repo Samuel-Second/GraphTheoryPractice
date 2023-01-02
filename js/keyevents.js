@@ -1,5 +1,7 @@
 document.onkeydown = (e) =>
 {
+    if (hasFocusOnInput()) return;
+
     let key = getBtnByKey(e.code);
     
     if (key == undefined) return;
@@ -15,6 +17,8 @@ document.onkeydown = (e) =>
 
 document.onkeyup = (e) =>
 {
+    if (hasFocusOnInput()) return;
+
     let key = getBtnByKey(e.code);
     
     if (key == undefined) return;
@@ -61,8 +65,17 @@ function getBtnByKey(keyName)
 
 function cancelAllInputFocus()
 {
-    allInputs.forEach( (input) =>
+    for(let input of allInputs)
     {
         input.blur();
-    });
+    }
+}
+
+function hasFocusOnInput()
+{
+    if (document.activeElement.tagName.toLowerCase() == "input")
+    {
+        return true;
+    }
+    return false;
 }

@@ -200,7 +200,12 @@ class Graph{
             cellInput.maxLength = 3;
             cellInput.setAttribute("from-node", parseInt(rowIndex) - 1);
             cellInput.setAttribute("to-node", parseInt(cellIndex) - 1);
-            cellInput.onkeyup = () => this.renderGraph();
+            cellInput.onwheel = (e) =>
+            {
+                inputWheelEvent(e);
+                this.renderGraph();
+            }
+            cellInput.oninput = cellInput.onkeyup = () => this.renderGraph();
     
             return cellInput;
         }
@@ -220,6 +225,8 @@ class Graph{
             this.Brush.clearCanvas();
             
             this.drawNodes();
+
+            this.edgeInputFilter();
     
             this.drawEdges();
     
@@ -248,6 +255,32 @@ class Graph{
     
             this.PathTextArea.clear();
             this.PathTextArea.printPathData(pathData);
+        }
+        catch (e)
+        {
+            console.log(e.message);
+        }
+    }
+
+    edgeInputFilter()
+    {
+        try
+        {
+            this.edgeInputs = document.querySelectorAll(".adjacency-edge-input");
+    
+            this.resetEdges();
+
+            for(let i = 0; i < this.edgeInputs.length; i++)
+            {
+                this.edgeInputs[i].value = getNumberWithin(this.edgeInputs[i].value, 0, 999);
+
+                if (this.edgeInputs[i].value == "") continue;
+
+                let fromNodeId = parseInt(this.edgeInputs[i].getAttribute("from-node"));
+                let toNodeId   = parseInt(this.edgeInputs[i].getAttribute("to-node"));
+
+                this.edges[fromNodeId][toNodeId] = parseInt(this.edgeInputs[i].value);
+            }
         }
         catch (e)
         {
@@ -335,23 +368,13 @@ class Graph{
     {
         try
         {
-            this.edgeInputs = document.querySelectorAll(".adjacency-edge-input");
-    
-            this.resetEdges();
-
             for (let edgeInput of this.edgeInputs)
             {
-                let edgeValue  = parseInt(edgeInput.value);
-                let fromNodeId = parseInt(edgeInput.getAttribute("from-node"));
-                let toNodeId   = parseInt(edgeInput.getAttribute("to-node"));
+                if (edgeInput.value == "") continue;
     
-                this.edges[fromNodeId][toNodeId] = null;
-
-                if (isNaN(edgeValue) || fromNodeId == toNodeId) continue;
-
-                this.edges[fromNodeId][toNodeId] = edgeValue;
-    
-                let transparacy = this.getTransparacy(edgeValue);
+                let transparacy = this.getTransparacy(parseInt(edgeInput.value));
+                let fromNodeId  = parseInt(edgeInput.getAttribute("from-node"));
+                let toNodeId    = parseInt(edgeInput.getAttribute("to-node"));
                 let fromNode    = this.nodes[fromNodeId];
                 let toNode      = this.nodes[toNodeId];
     
@@ -1370,15 +1393,13 @@ class Graph{
     {
         try
         {
-            if (isNaN(node) || node > this.numOfNode - 1)
+            node = getNumberWithin(node, 0, this.numOfNode - 1);
+
+            if (node == "")
             {
-                return 0;
+                node = 0;
             }
-            if (node < 0)
-            {
-                return this.numOfNode -1;
-            }
-            return node;
+            return parseInt(node);
         }
         catch (e)
         {
