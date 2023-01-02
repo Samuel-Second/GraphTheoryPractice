@@ -23,53 +23,64 @@ class TspStats
     {
         try
         {
+            let path1           = algorithmData1.path;
+            let pathLength1     = algorithmData1.path.length;
             let distance1       = algorithmData1.distance;
-            let nodeCount1      = algorithmData1.path.length;
             let separatedCount1 = algorithmData1.separated.length;
     
+            let path2           = algorithmData2.path;
+            let pathLength2     = algorithmData2.path.length;
             let distance2       = algorithmData2.distance;
-            let nodeCount2      = algorithmData2.path.length;
             let separatedCount2 = algorithmData2.separated.length;
-    
-            if (separatedCount1 == separatedCount2) // 若兩演算法的分離節點數一致
-            {
-                if (distance1 == distance2) // 若兩演算法的總距離一致
-                {
-                    if (nodeCount1 == nodeCount2) // 若兩演算法的行經節點數一致：完全平局
-                    {
-                        this.doneCompare(numOfNode, edgeSpread);
-    
-                        return algorithmData1; // 回傳演算法 1
-                    }
-                    if (nodeCount1 < nodeCount2) // 若前項的行經節點數較少
-                    {
-                        this.tspDijkstraWon(numOfNode, edgeSpread);
-    
-                        return algorithmData1; // 回傳演算法 1
-                    }
-                    this.tspNnWon(numOfNode, edgeSpread);
-    
-                    return algorithmData2; // 否則回傳演算法 2
-                }
-                if (distance1 < distance2) // 否則，若前項總距離較近
-                {
-                    this.tspDijkstraWon(numOfNode, edgeSpread);
-    
-                    return algorithmData1; // 回傳演算法 1
-                }
-                this.tspNnWon(numOfNode, edgeSpread);
-    
-                return algorithmData2; // 否則回傳演算法 2
-            }
-            if (separatedCount1 < separatedCount2) // 若前項的分離節點數較少
+
+            // 誰遍歷圖較成功？
+            if (path2[0] != path2[pathLength2-1] && path1[0] == path1[pathLength1-1]) // 演算法 1
             {
                 this.tspDijkstraWon(numOfNode, edgeSpread);
-    
-                return algorithmData1; // 回傳演算法 1
+                return algorithmData1;
             }
-            this.tspNnWon(numOfNode, edgeSpread);
-    
-            return algorithmData2; // 否則回傳演算法 2
+            if (path1[0] != path1[pathLength1-1] && path2[0] == path2[pathLength2-1]) // 演算法 2
+            {
+                this.tspNnWon(numOfNode, edgeSpread);
+                return algorithmData2;
+            }
+            // 誰的分離節點數較少？
+            if (separatedCount1 < separatedCount2) // 演算法 1
+            {
+                this.tspDijkstraWon(numOfNode, edgeSpread);
+                return algorithmData1;
+            }
+            if (separatedCount1 > separatedCount2) // 演算法 2
+            {
+                this.tspNnWon(numOfNode, edgeSpread);
+                return algorithmData2;
+            }
+            // 誰的總距離較近？
+            if (distance1 < distance2) // 演算法 1
+            {
+                this.tspDijkstraWon(numOfNode, edgeSpread);
+
+                return algorithmData1;
+            }
+            if (distance1 > distance2) // 演算法 2
+            {
+                this.tspNnWon(numOfNode, edgeSpread);
+                return algorithmData2;
+            }
+            // 誰的行經節點數較少？
+            if (pathLength1 < pathLength2) // 演算法 1
+            {
+                this.tspDijkstraWon(numOfNode, edgeSpread);
+                return algorithmData1;
+            }
+            if (pathLength1 > pathLength2) // 演算法 2
+            {
+                this.tspNnWon(numOfNode, edgeSpread);
+                return algorithmData2;
+            }
+            // 平手
+            this.doneCompare(numOfNode, edgeSpread);
+            return algorithmData1;
         }
         catch (e)
         {
