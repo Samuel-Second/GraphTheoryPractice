@@ -1,4 +1,4 @@
-algorithmSlct.onchange = () => updatePathInput();
+algorithmSlct.oninput = () => updatePathInput();
 
 function updatePathInput()
 {
@@ -15,7 +15,15 @@ function updatePathInput()
     graph.generateGraph(graph.numOfNode);
 }
 
-pathInputStart.onchange = pathInputEnd.onchange = (e) =>
+pathInputStart.onwheel = pathInputEnd.onwheel = (e) =>
+{
+    inputWheelEvent(e);
+    pathInputEvent(e);
+}
+
+pathInputStart.oninput = pathInputEnd.oninput = (e) => pathInputEvent(e);
+
+function pathInputEvent(e)
 {
     e.target.value = graph.getValidNode(e.target.value)
     
